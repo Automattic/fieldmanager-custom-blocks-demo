@@ -8,6 +8,10 @@ Version: 0.1
 Author URI: http://vip.wordpress.com
 */
 
+if ( ! defined( 'FM_VERSION' ) ) {
+	return;
+}
+
 if ( !class_exists( 'FM_Demo_Custom_Blocks' ) ) :
 
 class FM_Demo_Custom_Blocks {
