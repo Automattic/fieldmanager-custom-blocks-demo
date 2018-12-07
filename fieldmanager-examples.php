@@ -8,15 +8,17 @@ Version: 0.1
 Author URI: http://vip.wordpress.com
 */
 
-if ( ! defined( 'FM_VERSION' ) ) {
-	return;
+add_action( 'after_setup_theme', 'plugin_init' );
+
+function plugin_init() {
+	if ( defined( 'FM_VERSION' ) ) {
+		$var = new FM_Demo_Custom_Blocks();
+	}
 }
 
 if ( !class_exists( 'FM_Demo_Custom_Blocks' ) ) :
 
 class FM_Demo_Custom_Blocks {
-
-	public static $instance;
 
 	public function __construct() {
 		add_action( 'init', array( $this, 'register' ) );
@@ -24,6 +26,8 @@ class FM_Demo_Custom_Blocks {
 	}
 
 	public function setup() {
+		// add_action( 'init', array( $this, 'register' ) );
+		// add_action( 'after_setup_theme' ,array( $this, 'init' ) );
 		add_action( 'fm_post_demo-blocks', array( $this, 'init' ) );
 	}
 
@@ -229,7 +233,5 @@ class FM_Demo_Custom_Blocks {
 		$fm->add_meta_box( 'Block Repeater', 'demo-blocks' );
 	}
 }
-
-$var = new FM_Demo_Custom_Blocks();
 
 endif;
