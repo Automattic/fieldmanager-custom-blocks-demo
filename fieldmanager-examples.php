@@ -8,7 +8,7 @@ Version: 0.1
 Author URI: http://vip.wordpress.com
 */
 
-add_action( 'after_setup_theme', 'plugin_init' );
+add_action( 'plugins_loaded', 'plugin_init' );
 
 function plugin_init() {
 	if ( defined( 'FM_VERSION' ) ) {
@@ -22,13 +22,12 @@ class FM_Demo_Custom_Blocks {
 
 	public function __construct() {
 		add_action( 'init', array( $this, 'register' ) );
-		add_action( 'after_setup_theme' ,array( $this, 'init' ) );
+		add_action( 'fm_post_demo-blocks', array( $this, 'init' ) );
+
 	}
 
 	public function setup() {
-		// add_action( 'init', array( $this, 'register' ) );
-		// add_action( 'after_setup_theme' ,array( $this, 'init' ) );
-		add_action( 'fm_post_demo-blocks', array( $this, 'init' ) );
+		add_action( 'after_setup_theme' ,array( $this, 'init' ) );
 	}
 
 	public function register() {
